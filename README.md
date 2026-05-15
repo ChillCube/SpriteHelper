@@ -32,3 +32,8 @@ push-all-addons
 ```
 
 
+
+## Used By
+1 other ChillCube addon(s) depend on this:
+
+- [heart_popup](https://github.com/ChillCube/heart_popup)
