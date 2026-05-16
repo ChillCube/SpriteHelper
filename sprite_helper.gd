@@ -435,4 +435,3 @@ static func flash_red(sprite: Sprite2D, duration: float = 0.1) -> void: ## Flash
 	sprite.modulate = Color.RED
 	await sprite.get_tree().create_timer(duration).timeout
 	sprite.modulate = original_color
-
