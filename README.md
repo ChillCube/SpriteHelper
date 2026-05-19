@@ -32,7 +32,8 @@ push-all-addons
 
 
 ## Used By
-2 other ChillCube addon(s) depend on this:
+3 other ChillCube addon(s) depend on this:
 
 - [GodotBullet](https://github.com/ChillCube/GodotBullet)
 - [heart_popup](https://github.com/ChillCube/heart_popup)
+- [SelectableUI](https://github.com/ChillCube/SelectableUI)
