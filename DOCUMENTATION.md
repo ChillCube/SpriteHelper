@@ -1,5 +1,5 @@
 # SpriteHelper API Reference
-Generated: 2026-04-19
+Generated: 2026-05-20
 
 A bunch of helper function for managing sprite2D's in godot
 
@@ -47,6 +47,8 @@ A bunch of helper function for managing sprite2D's in godot
 | **static func get_texture_name()** | `sprite: Sprite2D` | `String` |  Get the name of the current texture |
 | **static func add_collision_shape()** | `sprite: Sprite2D` | `CollisionShape2D` |  Add a collision shape that matches sprite size |
 | **static func add_circle_collision()** | `sprite: Sprite2D`<br>`radius_ratio: float = 0.5` | `CollisionShape2D` |  Add a circular collision shape |
+| **static func generate_collision_polygon()** | `sprite: Sprite2D`<br>`dot_count: int = 8`<br>`alpha_threshold: float = 0.1` | `PackedVector2Array` |  Trace the sprite silhouette and return polygon points for a collision shape. Casts dot_count rays from the sprite center; each ray records the outermost opaque pixel. |
+| **static func add_polygon_collision()** | `sprite: Sprite2D`<br>`dot_count: int = 8`<br>`alpha_threshold: float = 0.1` | `CollisionPolygon2D` |  Add a CollisionPolygon2D child whose shape traces the sprite silhouette |
 | **static func create_sprite()** | `parent: Node`<br>`texture: Texture2D`<br>`position: Vector2`<br>`scale: Vector2 = Vector2.ONE` | `Sprite2D` |  Create a complete sprite node |
 | **static func duplicate_sprite()** | `sprite: Sprite2D`<br>`parent: Node`<br>`position_offset: Vector2 = Vector2.ZERO` | `Sprite2D` |  Create a duplicate of a sprite |
 | **static func toggle_visibility()** | `sprite: Sprite2D` | `void` |  Toggle sprite visibility |

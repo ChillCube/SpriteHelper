@@ -344,16 +344,73 @@ static func add_circle_collision(sprite: Sprite2D, radius_ratio: float = 0.5) ->
 	if not sprite or not sprite.texture:
 		push_warning("Cannot add collision shape: sprite or texture missing")
 		return null
-	
+
 	var collision_shape = CollisionShape2D.new()
 	var circle_shape = CircleShape2D.new()
 	var sprite_size = get_size(sprite)
-	
+
 	circle_shape.radius = min(sprite_size.x, sprite_size.y) * radius_ratio
 	collision_shape.shape = circle_shape
-	
+
 	sprite.add_child(collision_shape)
 	return collision_shape
+
+static func generate_collision_polygon(sprite: Sprite2D, dot_count: int = 8, alpha_threshold: float = 0.1) -> PackedVector2Array: ## Trace the sprite silhouette and return polygon points for a collision shape. Casts dot_count rays from the sprite center; each ray records the outermost opaque pixel.
+	if not sprite or not sprite.texture:
+		push_warning("Cannot generate collision polygon: sprite or texture missing")
+		return PackedVector2Array()
+
+	var image: Image = sprite.texture.get_image()
+	if not image:
+		push_warning("Cannot read image data from texture")
+		return PackedVector2Array()
+
+	# Ensure we can sample individual pixels regardless of the original format
+	if image.get_format() != Image.FORMAT_RGBA8:
+		image = image.duplicate()
+		image.convert(Image.FORMAT_RGBA8)
+
+	var img_w := image.get_width()
+	var img_h := image.get_height()
+	var center_px := Vector2(img_w, img_h) * 0.5
+	var max_radius := center_px.length()
+	var rect := sprite.get_rect()  # local-space bounding rect, handles scale + centering
+
+	var points := PackedVector2Array()
+	points.resize(dot_count)
+
+	for i in range(dot_count):
+		var angle := TAU * i / float(dot_count)
+		var dir := Vector2(cos(angle), sin(angle))
+
+		var last_opaque := center_px  # fallback: place point at center if sprite is fully transparent
+
+		for r in range(1, int(ceil(max_radius)) + 1):
+			var sample := center_px + dir * r
+			var px := int(sample.x)
+			var py := int(sample.y)
+
+			if px < 0 or px >= img_w or py < 0 or py >= img_h:
+				break
+
+			if image.get_pixel(px, py).a > alpha_threshold:
+				last_opaque = sample
+
+		# Map pixel coordinates → local sprite space
+		var normalized := last_opaque / Vector2(img_w, img_h)
+		points[i] = rect.position + normalized * rect.size
+
+	return points
+
+static func add_polygon_collision(sprite: Sprite2D, dot_count: int = 8, alpha_threshold: float = 0.1) -> CollisionPolygon2D: ## Add a CollisionPolygon2D child whose shape traces the sprite silhouette
+	var points := generate_collision_polygon(sprite, dot_count, alpha_threshold)
+	if points.is_empty():
+		return null
+
+	var collision_polygon := CollisionPolygon2D.new()
+	collision_polygon.polygon = points
+	sprite.add_child(collision_polygon)
+	return collision_polygon
 
 # ============================================
 # CONVENIENCE FUNCTIONS
