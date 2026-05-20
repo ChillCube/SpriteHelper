@@ -32,8 +32,9 @@ push-all-addons
 
 
 ## Used By
-3 other ChillCube addon(s) depend on this:
+4 other ChillCube addon(s) depend on this:
 
 - [GodotBullet](https://github.com/ChillCube/GodotBullet)
 - [heart_popup](https://github.com/ChillCube/heart_popup)
 - [PlaceAbleObject2D](https://github.com/ChillCube/PlaceAbleObject2D)
+- [SpritePlacement](https://github.com/ChillCube/SpritePlacement)
