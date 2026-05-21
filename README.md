@@ -4,38 +4,35 @@ A bunch of helper function for managing sprite2D's in godot
 
 ## Installation
 
-Make sure to download the ChillCube Developer tools to use this addon: https://github.com/ChillCube/ChillCube-Developer-Tools.git
+Make sure to download the ChillCube Developer tools: https://github.com/ChillCube/ChillCube-Developer-Tools.git
 
-### Linux
-To add this to your project, copy paste these commands into terminal at the root of your project:
+### Using the Godot Plugin
+Enable the **ChillCube Tools** plugin, then paste the repo URL into the Clone tab.
+
+### Linux / CLI
 ```bash
 clone-gd-addon https://github.com/ChillCube/SpriteHelper.git
 ```
 
 ## Documentation
-You can find the documentation at: https://github.com/ChillCube/SpriteHelper/blob/main/DOCUMENTATION.md
+https://github.com/ChillCube/SpriteHelper/blob/main/DOCUMENTATION.md
 
 ## Deinstallation
-### Linux
-Run this in the root of your godot project:
+Use the CC Tools panel in Godot, or run:
 ```bash
 remove-gd-addon SpriteHelper
 ```
 
 ## For Developers
-### Push Changes
-Run this at the root of your directory to push changes to any addons you have:
 ```bash
 push-all-addons
 ```
 
-
-
 ## Used By
 5 other ChillCube addon(s) depend on this:
 
-- [GodotBullet](https://github.com/ChillCube/GodotBullet)
-- [heart_popup](https://github.com/ChillCube/heart_popup)
-- [PlaceAbleItem2D](https://github.com/ChillCube/PlaceAbleItem2D)
-- [PlaceAbleObject2D](https://github.com/ChillCube/PlaceAbleObject2D)
 - [SpritePlacement](https://github.com/ChillCube/SpritePlacement)
+- [PlaceAbleItem2D](https://github.com/ChillCube/PlaceAbleItem2D)
+- [heart_popup](https://github.com/ChillCube/heart_popup)
+- [GodotBullet](https://github.com/ChillCube/GodotBullet)
+- [PlaceAbleObject2D](https://github.com/ChillCube/PlaceAbleObject2D)
