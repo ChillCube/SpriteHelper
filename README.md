@@ -27,8 +27,3 @@ remove-gd-addon SpriteHelper
 ```bash
 push-all-addons
 ```
-
-## Used By
-1 other ChillCube addon(s) depend on this:
-
-- [GodotBullet](https://github.com/ChillCube/GodotBullet)
